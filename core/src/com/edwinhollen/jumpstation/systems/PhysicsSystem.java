@@ -15,7 +15,11 @@ public class PhysicsSystem implements ComponentSystem{
     @Override
     public void render(List<Entity> entities) {
         entities.forEach(entity -> {
-            System.out.println(entity);
+            PositionComponent pos = (PositionComponent) entity.getComponentByClass(PositionComponent.class);
+            PhysicsComponent phys = (PhysicsComponent) entity.getComponentByClass(PhysicsComponent.class);
+            pos.x += phys.vX;
+            pos.y += phys.vY;
+
         });
     }
 

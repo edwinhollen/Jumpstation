@@ -4,8 +4,10 @@ import com.edwinhollen.jumpstation.Entity;
 import com.edwinhollen.jumpstation.EntitySystem;
 import com.edwinhollen.jumpstation.RenderableEntities;
 import com.edwinhollen.jumpstation.Scene;
+import com.edwinhollen.jumpstation.components.ImageComponent;
 import com.edwinhollen.jumpstation.components.PhysicsComponent;
 import com.edwinhollen.jumpstation.components.PositionComponent;
+import com.edwinhollen.jumpstation.systems.ImageSystem;
 import com.edwinhollen.jumpstation.systems.PhysicsSystem;
 
 /**
@@ -17,12 +19,17 @@ public class TitleScene extends Scene {
     public TitleScene() {
         this.ces = new EntitySystem()
             .addSystem(new PhysicsSystem())
+            .addSystem(new ImageSystem())
             .addEntity(new Entity()
-                .addComponent(new PositionComponent())
-                .addComponent(new PhysicsComponent())
+                            .addComponent(new PositionComponent(0, 0))
+                            .addComponent(new PhysicsComponent())
             )
             .addEntity(new Entity()
-                .addComponent(new PositionComponent())
+                .addComponent(new PositionComponent(0, 0))
+            )
+            .addEntity(new Entity()
+                .addComponent(new PositionComponent(0, 0))
+                .addComponent(new ImageComponent("badlogic.jpg"))
             );
     }
 
