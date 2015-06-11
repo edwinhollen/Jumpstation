@@ -5,6 +5,6 @@ import com.edwinhollen.jumpstation.Component;
 /**
  * Created by Edwin on 6/11/2015.
  */
-public interface PhysicsComponent extends Component {
-    double velocityX = 0, velocityY = 0;
+public class PhysicsComponent implements Component {
+    public double vX = 0, vY = 0;
 }

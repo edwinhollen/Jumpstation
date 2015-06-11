@@ -10,16 +10,12 @@ import java.util.stream.Collectors;
  * Created by Edwin on 6/11/2015.
  */
 public class EntitySystem {
-    private List<Entity> entities = new ArrayList<Entity>();
-    private List<ComponentSystem> systems = new ArrayList<ComponentSystem>();
+    public List<Entity> entities = new ArrayList<Entity>();
+    public List<ComponentSystem> systems = new ArrayList<ComponentSystem>();
     public Map<ComponentSystem, List<Entity>> sort(){
         Map<ComponentSystem, List<Entity>> returnMap = new HashMap<>();
         this.systems.forEach(system -> {
-            returnMap.put(system, entities.stream().filter(entity -> {
-                return system.accepts().parallelStream().allMatch(acceptedClass -> {
-                    return acceptedClass.isInstance(entity);
-                });
-            }).collect(Collectors.toList()));
+            returnMap.put(system, entities.stream().filter(entity -> system.accepts().parallelStream().allMatch(aClass -> entity.components.stream().anyMatch(aClass::isInstance))).collect(Collectors.toList()));
         });
         return returnMap;
     }

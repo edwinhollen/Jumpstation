@@ -10,16 +10,17 @@ import java.util.List;
 /**
  * Created by Edwin on 6/11/2015.
  */
-public class PhysicsSystem implements ComponentSystem {
-    @Override
-    public List<Class<? extends Component>> accepts() {
-        return Arrays.asList(PositionComponent.class, PhysicsComponent.class);
-    }
+public class PhysicsSystem implements ComponentSystem{
 
     @Override
     public void render(List<Entity> entities) {
         entities.forEach(entity -> {
-
+            System.out.println(entity);
         });
+    }
+
+    @Override
+    public List<Class<? extends Component>> accepts() {
+        return Arrays.asList(PhysicsComponent.class, PositionComponent.class);
     }
 }
