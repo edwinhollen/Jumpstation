@@ -8,4 +8,5 @@ import java.util.List;
  */
 public interface ComponentSystem extends RenderableEntities {
     List<Class<? extends Component>> accepts();
+    void dispose();
 }

@@ -39,6 +39,15 @@ public class ImageSystem implements ComponentSystem {
     }
 
     @Override
+    public void dispose() {
+        this.loadedTextures.forEach((s, texture) -> {
+            texture.dispose();
+        });
+        this.loadedTextures.clear();
+        this.batch.dispose();
+    }
+
+    @Override
     public void render(List<Entity> entities) {
         batch.begin();
         entities.forEach(entity -> {

@@ -27,4 +27,9 @@ public class PhysicsSystem implements ComponentSystem{
     public List<Class<? extends Component>> accepts() {
         return Arrays.asList(PhysicsComponent.class, PositionComponent.class);
     }
+
+    @Override
+    public void dispose() {
+        
+    }
 }

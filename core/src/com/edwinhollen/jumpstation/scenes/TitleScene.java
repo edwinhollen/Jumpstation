@@ -1,9 +1,8 @@
 package com.edwinhollen.jumpstation.scenes;
 
-import com.edwinhollen.jumpstation.Entity;
-import com.edwinhollen.jumpstation.EntitySystem;
-import com.edwinhollen.jumpstation.RenderableEntities;
-import com.edwinhollen.jumpstation.Scene;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.edwinhollen.jumpstation.*;
 import com.edwinhollen.jumpstation.components.ImageComponent;
 import com.edwinhollen.jumpstation.components.PhysicsComponent;
 import com.edwinhollen.jumpstation.components.PositionComponent;
@@ -17,6 +16,7 @@ public class TitleScene extends Scene {
     private EntitySystem ces;
 
     public TitleScene() {
+        System.out.println("Entering title scene...");
         this.ces = new EntitySystem()
             .addSystem(new PhysicsSystem())
             .addSystem(new ImageSystem())
@@ -31,10 +31,20 @@ public class TitleScene extends Scene {
                 .addComponent(new PositionComponent(0, 0))
                 .addComponent(new ImageComponent("badlogic.jpg"))
             );
+
     }
 
     @Override
     public void render() {
         this.ces.sort().forEach(RenderableEntities::render);
+        if(Gdx.input.isKeyPressed(Input.Keys.ENTER)){
+            Jumpstation.changeScene(new GameScene());
+        }
+    }
+
+
+    @Override
+    public void dispose() {
+        this.ces.systems.forEach(ComponentSystem::dispose);
     }
 }
